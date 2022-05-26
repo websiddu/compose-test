@@ -13,14 +13,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import tv.compose.R
+import tv.compose.ui.focus.ChildFocusState
 import tv.compose.ui.focus.FocusableSurface
 import tv.compose.ui.focus.SurfaceStyle
+import tv.compose.ui.focus.restoreFocusChild
 
 @Composable
 fun TvCard(
     image: String = "",
+    state: ChildFocusState = ChildFocusState(),
     aspectRatio: Float = 1.777777778f,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -35,7 +38,7 @@ fun TvCard(
                 outlineWidth = 2.dp,
                 outlineInset = 4.dp,
             ),
-
+            state = state
         ) {
             Image(
                 painter = painterResource(R.drawable.poster),
