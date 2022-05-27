@@ -3,9 +3,7 @@ package tv.compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -33,6 +31,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun App() {
 
@@ -46,9 +45,12 @@ fun App() {
                 .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize()
         ) {
+            
             Row(modifier = Modifier
-                .padding(6.dp)
-                .scale(0.5f)) {
+                .padding(40.dp, 6.dp)
+                .scale(0.5f)
+                .focusGroup()
+            ) {
                 TvButton(
                     onPress = {
                         isDarkTheme = !isDarkTheme
