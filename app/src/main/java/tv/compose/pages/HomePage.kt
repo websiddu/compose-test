@@ -28,9 +28,7 @@ import tv.compose.ui.focus.FocusableSurface
 fun HomePage(
     navController: NavController
 ) {
-
-
-
+    
     Column(
         modifier = Modifier
             .fillMaxHeight()
@@ -49,10 +47,6 @@ fun HomePage(
 
         LaunchedEffect(key1 = Unit) {
             firstItem.requestFocus()
-        }
-        
-        Button(onClick = { /*TODO*/ }) {
-        
         }
         
 
