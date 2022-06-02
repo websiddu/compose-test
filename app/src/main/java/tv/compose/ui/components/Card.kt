@@ -1,17 +1,24 @@
 package tv.compose.ui.components
 
+import android.content.res.AssetManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.coil.CoilImage
 import tv.compose.R
 import tv.compose.ui.focus.ChildFocusState
 import tv.compose.ui.focus.FocusableSurface
@@ -20,6 +27,7 @@ import tv.compose.ui.focus.SurfaceStyle
 @Composable
 fun TvCard(
   image: String = "",
+  name: String = "",
   state: ChildFocusState = ChildFocusState(),
   aspectRatio: Float = 1.777777778f,
   content: @Composable () -> Unit,
@@ -39,25 +47,36 @@ fun TvCard(
       ),
       state = state
     ) {
-      Image(
-        painter = painterResource(R.drawable.poster),
-        contentDescription = null,
+      
+      CoilImage(
+        imageModel = image,
         contentScale = ContentScale.Crop,
         modifier = Modifier
-          .height(90.dp)
-          .aspectRatio(
-            matchHeightConstraintsFirst = true,
-            ratio = aspectRatio
-          )
-      
+          .height(110.dp)
+          .aspectRatio(16f / 9f)
       )
+      
     }
     
-    Text(text = "Black widow")
-    Text(
-      text = "Disney +",
-      style = MaterialTheme.typography.labelSmall
-    )
+    CompositionLocalProvider(
+      LocalContentColor provides MaterialTheme.colorScheme.onBackground
+    ) {
+      
+      Column(modifier = Modifier
+        .width(196.dp)
+        .padding(0.dp, 12.dp, 0.dp, 0.dp)) {
+        Text(
+          text = name,
+          style = MaterialTheme.typography.bodySmall,
+          maxLines = 1,
+          overflow = TextOverflow.Ellipsis
+        )
+        Text(
+          text = "Disney +",
+          style = MaterialTheme.typography.labelSmall
+        )
+      }
+    }
     
   }
   
@@ -70,30 +89,36 @@ fun TvWideCard(
   content: @Composable () -> Unit,
 ) {
   
-  FocusableSurface(
-    onPress = { /*TODO*/ },
-    state = state,
-    shape = RoundedCornerShape(16.dp),
-    focusStyle = SurfaceStyle(
-      scale = 1.05f
-    )
+  
+  CompositionLocalProvider(
+    LocalContentColor provides MaterialTheme.colorScheme.onBackground,
   ) {
-    Row() {
-      Image(
-        painter = painterResource(R.drawable.poster),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-          .height(110.dp)
-          .aspectRatio(
-            matchHeightConstraintsFirst = true,
-            ratio = 1.77778f
-          )
+    FocusableSurface(
+      onPress = { /*TODO*/ },
+      state = state,
+      shape = RoundedCornerShape(16.dp),
+      focusStyle = SurfaceStyle(
+        scale = 1.05f
       )
-      Column(modifier = Modifier.padding(16.dp)) {
-        Text(text = "Title")
-        Text(text = "Secondary")
-        Text(text = "Long description...")
+    ) {
+      Row() {
+        Image(
+          painter = painterResource(R.drawable.poster),
+          contentDescription = null,
+          contentScale = ContentScale.Crop,
+          modifier = Modifier
+            .height(110.dp)
+            .aspectRatio(
+              matchHeightConstraintsFirst = true,
+              ratio = 1.77778f
+            )
+        )
+        
+        Column(modifier = Modifier.padding(16.dp)) {
+          Text(text = "Title", color = MaterialTheme.colorScheme.onBackground)
+          Text(text = "Secondary")
+          Text(text = "Long description...")
+        }
       }
     }
   }
