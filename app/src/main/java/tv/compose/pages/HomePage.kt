@@ -26,59 +26,59 @@ import tv.compose.ui.focus.FocusableSurface
 
 @Composable
 fun HomePage(
-    navController: NavController
+  navController: NavController
 ) {
+  
+  Column(
+    modifier = Modifier
+      .fillMaxHeight()
+      .background(color = MaterialTheme.colorScheme.background, shape = RectangleShape)
+      .padding(58.dp, 40.dp)
+      .clip(RectangleShape)
+  ) {
     
-    Column(
-        modifier = Modifier
-            .fillMaxHeight()
-            .background(color = MaterialTheme.colorScheme.background, shape = RectangleShape)
-            .padding(58.dp, 40.dp)
-            .clip(RectangleShape)
-    ) {
-
-        val data = listOf<String>("Typography", "Elevation", "Colors", "Buttons", "Cards")
-
-        val firstItem = remember { FocusRequester() }
-        val firstItemModifier = Modifier.focusRequester(firstItem)
-
-        val coroutineScope = rememberCoroutineScope()
-        val state = rememberLazyListState()
-
-        LaunchedEffect(key1 = Unit) {
-            firstItem.requestFocus()
-        }
-        
-
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalArrangement = Arrangement.spacedBy(20.dp),
-            contentPadding = PaddingValues(20.dp),
-        ) {
-            items(data) { item ->
-                FocusableSurface(
-                    onPress = {
-                        navController.navigate(item)
-                    },
-                    shape = RoundedCornerShape(20.dp),
-                    modifier = Modifier.height(120.dp),
-                    focusRequester = if(item == "Typography") firstItem else FocusRequester()
-                )
-                {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(
-                            text = item,
-                            letterSpacing = 0.1.sp,
-                            style = MaterialTheme.typography.headlineSmall
-                        )
-                    }
-                }
-            }
-        }
-
+    val data = listOf<String>("Typography", "Elevation", "Colors", "Buttons", "Cards", "FC", "t")
+    
+    val firstItem = remember { FocusRequester() }
+    val firstItemModifier = Modifier.focusRequester(firstItem)
+    
+    val coroutineScope = rememberCoroutineScope()
+    val state = rememberLazyListState()
+    
+    LaunchedEffect(key1 = Unit) {
+      firstItem.requestFocus()
     }
+    
+    
+    LazyVerticalGrid(
+      columns = GridCells.Fixed(4),
+      verticalArrangement = Arrangement.spacedBy(20.dp),
+      horizontalArrangement = Arrangement.spacedBy(20.dp),
+      contentPadding = PaddingValues(20.dp),
+    ) {
+      items(data) { item ->
+        FocusableSurface(
+          onPress = {
+            navController.navigate(item)
+          },
+          shape = RoundedCornerShape(20.dp),
+          modifier = Modifier.height(120.dp),
+          focusRequester = if (item == "Typography") firstItem else FocusRequester()
+        )
+        {
+          Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+          ) {
+            Text(
+              text = item,
+              letterSpacing = 0.1.sp,
+              style = MaterialTheme.typography.headlineSmall
+            )
+          }
+        }
+      }
+    }
+    
+  }
 }

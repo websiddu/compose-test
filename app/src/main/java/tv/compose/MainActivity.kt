@@ -46,20 +46,20 @@ fun App() {
                 .fillMaxSize()
         ) {
             
-            Row(modifier = Modifier
-                .padding(40.dp, 6.dp)
-                .scale(0.5f)
-                .focusGroup()
-            ) {
-                TvButton(
-                    onPress = {
-                        isDarkTheme = !isDarkTheme
-                    },
-                    shape = RoundedCornerShape(12.dp)
-                ) {
-                    Text(text = "Dark theme: $isDarkTheme")
-                }
-            }
+//            Row(modifier = Modifier
+//                .padding(40.dp, 6.dp)
+//                .scale(0.5f)
+//                .focusGroup()
+//            ) {
+//                TvButton(
+//                    onPress = {
+//                        isDarkTheme = !isDarkTheme
+//                    },
+//                    shape = RoundedCornerShape(12.dp)
+//                ) {
+//                    Text(text = "Dark theme: $isDarkTheme")
+//                }
+//            }
 
             Router(navController = navController)
         }

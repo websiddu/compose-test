@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
@@ -29,6 +30,7 @@ fun TvButton(
     shape: Shape = FilledButtonTokens.ContainerShape,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    focusRequester: FocusRequester = FocusRequester(),
     content: @Composable RowScope.() -> Unit
 ) {
 
@@ -37,6 +39,7 @@ fun TvButton(
         modifier = modifier,
         shape = shape,
         interactionSource = interactionSource,
+        focusRequester = focusRequester,
     ) {
         ProvideTextStyle(value = MaterialTheme.typography.bodyLarge) {
             Row(

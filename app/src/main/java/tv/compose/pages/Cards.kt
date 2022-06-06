@@ -55,7 +55,6 @@ fun CardsPage(navController: NavController) {
   val clusterType = object : TypeToken<List<Cluster>>() {}.type
   val clusters: List<Cluster> = gson.fromJson(jsonFileString, clusterType)
   
-  clusters.forEachIndexed { idx, item -> Log.i("data", "> Item $idx:\n${item.label}") }
   
   Column() {
     

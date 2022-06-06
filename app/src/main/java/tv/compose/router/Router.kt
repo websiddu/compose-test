@@ -18,7 +18,7 @@ fun Router(navController: NavHostController) {
     Column(
     ) {
 
-        NavHost(navController = navController, startDestination = "home") {
+        NavHost(navController = navController, startDestination = "VerticalNav") {
             composable("home") {
                 HomePage(navController = navController)
             }
@@ -41,6 +41,14 @@ fun Router(navController: NavHostController) {
 
             composable("elevation") {
                 ElevationPage()
+            }
+    
+            composable("fc") {
+                FeaturedCarouselPage()
+            }
+    
+            composable("VerticalNav") {
+                VerticalNavPage(navController = navController)
             }
         }
     }
