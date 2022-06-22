@@ -37,7 +37,18 @@ fun HomePage(
       .clip(RectangleShape)
   ) {
     
-    val data = listOf<String>("Typography", "Elevation", "Colors", "Buttons", "Cards", "FC", "t")
+    val data = listOf<String>(
+      "Typography",
+      "Elevation",
+      "Colors",
+      "Buttons",
+      "Cards",
+      "FC",
+      "VerticalNav",
+      "ImmersiveCluster",
+      "Tabs",
+      "jetstream/home"
+    )
     
     val firstItem = remember { FocusRequester() }
     val firstItemModifier = Modifier.focusRequester(firstItem)

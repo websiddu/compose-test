@@ -29,9 +29,9 @@ fun AnimatedOverlay(
   Box(modifier = modifier) {
     val boxScope = this
     backgroundComposable.invoke(boxScope)
-    overlayComposable.invoke(boxScope)
+//    overlayComposable.invoke(boxScope)
     
-    /*val visible = remember { mutableStateOf(false) }
+    val visible = remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         delay(delayInMillis)
@@ -45,6 +45,6 @@ fun AnimatedOverlay(
         exit = exitTransition
     ) {
         overlayComposable.invoke(boxScope)
-    }*/
+    }
   }
 }

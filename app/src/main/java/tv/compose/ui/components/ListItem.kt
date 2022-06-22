@@ -18,27 +18,23 @@ import tv.compose.ui.focus.FocusableSurface
 import tv.compose.ui.focus.SurfaceStyle
 
 @Composable
-fun ListItem(label: String = "", icon: ImageVector, hideLabel: Boolean = false) {
+fun ListItem(onPress: () -> Unit, label: String = "", icon: ImageVector, hideLabel: Boolean = false) {
   FocusableSurface(
-    onPress = { /*TODO*/ },
+    onPress = onPress,
     shape = CircleShape,
     style = SurfaceStyle(
       backgroundColor = Color.Unspecified
     ),
     focusStyle = SurfaceStyle(
-      scale = 1f,
+      scale = 1.025f,
       backgroundColor = MaterialTheme.colorScheme.secondaryContainer
-    ),
-    modifier = Modifier
-      .padding(12.dp, 8.dp)
-      .wrapContentHeight()
+    )
   ) {
     Row(
       modifier = Modifier
-        .fillMaxWidth()
-        .height(24.dp),
-      horizontalArrangement = Arrangement.spacedBy(8.dp),
-      verticalAlignment = Alignment.CenterVertically
+        .padding(16.dp, 8.dp)
+        .height(24.dp)
+        .fillMaxWidth(1f)
     ) {
       Icon(
         icon, label,
@@ -46,6 +42,7 @@ fun ListItem(label: String = "", icon: ImageVector, hideLabel: Boolean = false) 
         modifier = Modifier.size(24.dp)
       )
       if (!hideLabel) {
+        Spacer(modifier = Modifier.size(12.dp))
         Text(
           text = label,
           color = MaterialTheme.colorScheme.onSurfaceVariant,

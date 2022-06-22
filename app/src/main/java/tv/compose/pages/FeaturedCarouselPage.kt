@@ -3,12 +3,8 @@ package tv.compose.pages
 import android.icu.number.Scale
 import android.util.Log
 import androidx.annotation.DrawableRes
-import androidx.compose.animation.animateColor
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +29,9 @@ import tv.compose.R
 import tv.compose.ui.components.AnimatedOverlay
 import tv.compose.ui.components.Carousel
 import tv.compose.ui.components.Pager
+import tv.compose.ui.components.TvButton
+import tv.compose.ui.focus.FocusableSurface
+import tv.compose.ui.focus.SurfaceStyle
 
 
 data class Media(
@@ -68,16 +67,68 @@ val mediaItems = listOf(
 @Composable
 fun FeaturedCarouselPage() {
   
-  val currentIndex: MutableState<Int> = remember {
-    mutableStateOf(0)
-  }
+  val currentIndex: MutableState<Int> = remember { mutableStateOf(0) }
   
+  var visible by remember { mutableStateOf(true) }
+  
+  
+//  AnimatedVisibility(
+//    visible = visible,
+//    enter = slideInHorizontally(animationSpec = tween(durationMillis = 2000)) {
+//      200
+//    } + fadeIn(
+//      animationSpec = tween(durationMillis = 2000)
+//    ),
+//    exit = slideOutHorizontally(animationSpec = tween(durationMillis = 2000)) {
+//      200
+//    } + fadeOut(
+//      animationSpec = tween(durationMillis = 2000)
+//    )
+//  ) {
+//    // Content that needs to appear/disappear goes here:
+//    Box(
+//      Modifier
+//        .background(Color.Red)
+//        .size(100.dp)
+//    )
+//  }
+  
+  
+//  var state by remember { mutableStateOf(0) }
+//  val titles = listOf("TAB 1", "TAB 2", "TAB 3", "TAB 4", "TAB 5", "TAB 6")
+//  Column {
+//    TabRow(selectedTabIndex = state) {
+//      titles.forEachIndexed { index, title ->
+////        FancyTab(title = title, onClick = { state = index }, selected = (index == state))
+//
+//
+//        TvButton(onPress = {  state = index }, ) {
+//          Text(text = title)
+//        }
+//
+//      }
+//    }
+//    Text(
+//      modifier = Modifier.align(Alignment.CenterHorizontally),
+//      text = "Fancy tab ${state + 1} selected",
+//      style = MaterialTheme.typography.bodyMedium
+//    )
+//  }
+
+//
+//  TvButton(onPress = {
+//    visible = !visible
+//  }) {
+//    Text(text = "Animate")
+//  }
+
+
   Carousel(
     modifier = Modifier
-      .fillMaxWidth(1f)
+      .width(900.dp)
       .height(320.dp)
       .clip(RoundedCornerShape(20.dp))
-      
+
   ) {
     mediaItems.forEachIndexed { index, item ->
       item() {
@@ -110,7 +161,6 @@ fun FeaturedCarouselPage() {
                 )
               }
             }
-            
           }
         )
       }

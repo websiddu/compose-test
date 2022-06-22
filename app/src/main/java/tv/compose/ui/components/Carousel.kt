@@ -112,6 +112,7 @@ fun Carousel(
       
       Box {
         Pager<Int>(modifier = Modifier
+          .fillMaxWidth(0.99f)
           .onKeyEvent {
             if (Key.Back == it.key) {
               focusManager.clearFocus()

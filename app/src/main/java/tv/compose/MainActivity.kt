@@ -17,10 +17,13 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import tv.compose.router.Router
 import tv.compose.ui.components.TvButton
 import tv.compose.ui.theme.TvComposeTheme
+import tv.compose.ui.vm.TmdbViewModel
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +37,13 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun App() {
-
-    var isDarkTheme by remember { mutableStateOf(false) }
+    
+    val isDarkTheme by remember { mutableStateOf(false) }
+    
 
     TvComposeTheme(isDarkTheme) {
         val navController = rememberNavController()
+        
 
         Column(
             modifier = Modifier

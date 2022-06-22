@@ -13,6 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.layout.onPlaced
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import tv.compose.ui.focus.FocusableSurface
@@ -21,7 +25,10 @@ import tv.compose.ui.theme.elevation
 
 @Composable
 fun ElevationPage() {
-
+    
+    
+    val fm = LocalFocusManager.current
+    
     val allItems = listOf(
         MaterialTheme.elevation.Level0,
         MaterialTheme.elevation.Level1,
@@ -41,7 +48,9 @@ fun ElevationPage() {
     ) {
 
         LazyVerticalGrid(
-            modifier = Modifier.clip(Shapes.None),
+            modifier = Modifier.clip(Shapes.None).onPlaced {
+                fm.moveFocus(FocusDirection.Down)
+            },
             columns = GridCells.Fixed(4),
             verticalArrangement = Arrangement.spacedBy(20.dp),
             horizontalArrangement = Arrangement.spacedBy(20.dp),

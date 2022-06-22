@@ -37,50 +37,63 @@ fun VerticalNavPage(navController: NavController) {
   var hasFocus by remember { mutableStateOf(false) }
   val width = animateDpAsState(targetValue = if (hasFocus) 220.dp else 48.dp)
   
-  Row(
-    modifier = Modifier
-      .fillMaxSize()
-  ) {
-    Column(
-      modifier = Modifier
-        .background(MaterialTheme.colorScheme.surfaceTint.copy(0.04f))
-        .fillMaxHeight()
-        .padding(12.dp, 20.dp)
-        .width(width.value)
-        .onFocusChanged {
-          hasFocus = it.hasFocus
-        }
-        .focusRequester(fr),
-      verticalArrangement = Arrangement.SpaceBetween,
-    ) {
-      Column() {}
-      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        ListItem("Home", icon = Icons.Outlined.Home)
-        ListItem("Movies", icon = Icons.Outlined.Movie)
-        ListItem("Shows", icon = Icons.Outlined.Slideshow)
-        ListItem("Trending", icon = Icons.Outlined.Whatshot)
-        ListItem("Live", icon = Icons.Outlined.Sensors)
-        ListItem("Library", icon = Icons.Outlined.VideoLibrary)
-      }
-      Column {
-        ListItem("Settings", icon = Icons.Outlined.Settings)
-      }
-    }
+  Row(modifier = Modifier.fillMaxSize()) {
     
-    Column(
-      modifier = Modifier
-        .fillMaxWidth()
-        .padding(20.dp)
-    ) {
-      TvButton(onPress = {}) {
-        Text(text = "Test button")
-      }
-      Spacer(modifier = Modifier.height(40.dp))
-      TvButton(onPress = {}) {
-        Text(text = "Another button")
-      }
-    }
   }
+  
+  
+  
+  
+//  Row(
+//    modifier = Modifier
+//      .fillMaxSize()
+//  ) {
+//    Column(
+//      modifier = Modifier
+//        .background(MaterialTheme.colorScheme.surfaceTint.copy(0.04f))
+//        .fillMaxHeight()
+//        .padding(12.dp, 20.dp)
+//        .width(width.value)
+//        .onFocusChanged {
+//          hasFocus = it.hasFocus
+//        }
+//        .focusRequester(fr)
+//        .focusGroup(),
+//      verticalArrangement = Arrangement.SpaceBetween,
+//    ) {
+//      Column {
+////        ListItem("Home2", icon = Icons.Outlined.Home)
+//      }
+//      Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+//        ListItem("Home", icon = Icons.Outlined.Home)
+//        ListItem("Movies", icon = Icons.Outlined.Movie)
+//        ListItem("Shows", icon = Icons.Outlined.Slideshow)
+//        ListItem("Trending", icon = Icons.Outlined.Whatshot)
+//        ListItem("Live", icon = Icons.Outlined.Sensors)
+//        ListItem("Library", icon = Icons.Outlined.VideoLibrary, hideLabel = !hasFocus)
+//      }
+//      Column {
+//        ListItem("Settings", icon = Icons.Outlined.Settings)
+//      }
+//    }
+//
+//    Column(
+//      modifier = Modifier
+//        .fillMaxWidth()
+//        .padding(20.dp)
+//    ) {
+//
+////      FeaturedCarouselPage()
+//
+//      TvButton(onPress = {}) {
+//        Text(text = "Test button")
+//      }
+//      Spacer(modifier = Modifier.height(40.dp))
+//      TvButton(onPress = {}) {
+//        Text(text = "Another button")
+//      }
+//    }
+//  }
   
 }
 

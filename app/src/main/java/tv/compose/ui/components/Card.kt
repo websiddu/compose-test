@@ -17,6 +17,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.coil.CoilImage
 import tv.compose.R
@@ -28,8 +29,11 @@ import tv.compose.ui.focus.SurfaceStyle
 fun TvCard(
   image: String = "",
   name: String = "",
-  state: ChildFocusState = ChildFocusState(),
-  aspectRatio: Float = 1.777777778f,
+  state: ChildFocusState = remember { ChildFocusState() },
+  onFocus: () -> Unit = {},
+  onClick: () -> Unit = {},
+  aspectRatio: Float = 16f / 9f,
+  width: Dp = 200.dp,
   content: @Composable () -> Unit,
 ) {
   val interactionSource = remember { MutableInteractionSource() }
@@ -37,13 +41,14 @@ fun TvCard(
   Column {
     
     FocusableSurface(
-      onPress = { /*TODO*/ },
-      shape = RoundedCornerShape(12.dp),
-      outlineShape = RoundedCornerShape(16.dp),
+      onFocus = onFocus,
+      onPress = onClick,
+      shape = RoundedCornerShape(0.dp),
+      outlineShape = RoundedCornerShape(0.dp),
       focusStyle = SurfaceStyle(
-        scale = 1.1f,
+        scale = 1.05f,
         outlineWidth = 2.dp,
-        outlineInset = 4.dp,
+        outlineInset = 5.dp
       ),
       state = state
     ) {
@@ -52,8 +57,8 @@ fun TvCard(
         imageModel = image,
         contentScale = ContentScale.Crop,
         modifier = Modifier
-          .height(110.dp)
-          .aspectRatio(16f / 9f)
+          .width(width)
+          .aspectRatio(aspectRatio)
       )
       
     }
@@ -63,7 +68,7 @@ fun TvCard(
     ) {
       
       Column(modifier = Modifier
-        .width(196.dp)
+        .width(width)
         .padding(0.dp, 12.dp, 0.dp, 0.dp)) {
         Text(
           text = name,

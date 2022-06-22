@@ -13,12 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.Dp
@@ -46,8 +48,9 @@ class SurfaceStyle(
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun FocusableSurface(
-  onPress: () -> Unit,
   modifier: Modifier = Modifier,
+  onPress: () -> Unit = {},
+  onFocus: () -> Unit = {},
   enabled: Boolean = true,
   shape: Shape = Shapes.None,
   outlineShape: Shape = Shapes.None,
@@ -115,7 +118,7 @@ fun FocusableSurface(
     indication = null,
     enabled = true,
     role = Role.Button,
-    onClick = onPress
+    onClick = {}
   )
   
   CompositionLocalProvider(
@@ -127,6 +130,9 @@ fun FocusableSurface(
         .onFocusChanged {
           if (it.isFocused && state != null) {
             state.previouslyFocusedItem = focusRequester
+          }
+          if(it.isFocused) {
+            onFocus()
           }
         }
         .focusableSurface(

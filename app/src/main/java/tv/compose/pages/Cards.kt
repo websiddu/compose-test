@@ -43,10 +43,10 @@ data class MediaItem(val name: String, val poster: String, val id: String, val t
 
 
 
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CardsPage(navController: NavController) {
-  
+fun CardsPage() {
   
   val jsonFileString = getJsonDataFromAsset(LocalContext.current, "clusters.json")
   
@@ -57,14 +57,6 @@ fun CardsPage(navController: NavController) {
   
   
   Column() {
-    
-    
-    val focusState = remember { ChildFocusState() }
-    val focusState1 = remember { ChildFocusState() }
-    val focusState2 = remember { ChildFocusState() }
-    val focusState3 = remember { ChildFocusState() }
-    val focusState4 = remember { ChildFocusState() }
-    
     TvLazyColumn(
       contentPadding = PaddingValues(0.dp, 20.dp),
       verticalArrangement = Arrangement.spacedBy(32.dp),
@@ -80,12 +72,11 @@ fun CardsPage(navController: NavController) {
           animationSpec = tween(durationMillis = 200)
         )
         
-        
         Text(
           text = item.label,
           modifier = Modifier
             .padding(58.dp, 0.dp, 0.dp, 20.dp),
-          fontSize= fontSize.value.sp,
+          fontSize= 16.sp,
           fontWeight = FontWeight.Medium,
           color = MaterialTheme.colorScheme.onBackground
         )
@@ -98,97 +89,11 @@ fun CardsPage(navController: NavController) {
           }
         ) {
           items(item.items) { card ->
-            TvCard(image = card.poster, name = card.name) {
-            
-            }
+            TvCard(image = card.poster, name = card.name) {}
           }
         }
       }
     }
-
-
-//
-//      item {
-//        TvLazyRow(
-//          horizontalArrangement = Arrangement.spacedBy(20.dp),
-//          contentPadding = PaddingValues(58.dp, 20.dp),
-//          modifier = Modifier.restoreFocusParent(focusState),
-//        ) {
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//          item { TvCard(state = focusState) {} }
-//        }
-//      }
-//
-//      item {
-//        TvLazyRow(
-//          horizontalArrangement = Arrangement.spacedBy(20.dp),
-//          contentPadding = PaddingValues(58.dp, 20.dp),
-//          modifier = Modifier.restoreFocusParent(focusState2),
-//        ) {
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//          item { TvCard(state = focusState2) {} }
-//        }
-//      }
-//
-//      item {
-//        TvLazyRow(
-//          horizontalArrangement = Arrangement.spacedBy(20.dp),
-//          contentPadding = PaddingValues(58.dp, 20.dp),
-//          modifier = Modifier.restoreFocusParent(focusState3)
-//        ) {
-//          item { TvWideCard(state = focusState3) {} }
-//          item { TvWideCard(state = focusState3) {} }
-//          item { TvWideCard(state = focusState3) {} }
-//        }
-//      }
-//
-//      item {
-//        TvLazyRow(
-//          horizontalArrangement = Arrangement.spacedBy(20.dp),
-//          contentPadding = PaddingValues(58.dp, 20.dp),
-//          modifier = Modifier.restoreFocusParent(focusState1)
-//        ) {
-//          item { TvWideCard(state = focusState1) {} }
-//          item { TvWideCard(state = focusState1) {} }
-//          item { TvWideCard(state = focusState1) {} }
-//        }
-//      }
-//
-//
-//      item {
-//        TvLazyRow(
-//          horizontalArrangement = Arrangement.spacedBy(20.dp),
-//          contentPadding = PaddingValues(58.dp, 20.dp),
-//          modifier = Modifier.restoreFocusParent(focusState4)
-//        ) {
-//          item { TvWideCard(state = focusState4) {} }
-//          item { TvWideCard(state = focusState4) {} }
-//          item { TvWideCard(state = focusState4) {} }
-//          item { TvWideCard(state = focusState4) {} }
-//          item { TvWideCard(state = focusState4) {} }
-//        }
-//      }
-//    }
-    
   }
-  
 }
 
