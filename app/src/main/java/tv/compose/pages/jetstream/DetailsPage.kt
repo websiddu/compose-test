@@ -27,7 +27,8 @@ import tv.compose.utils.Constants
 
 @Composable
 fun DetailsPage(
-  navController: NavController, viewModel: TmdbViewModel, id: String
+  navController: NavController, viewModel: TmdbViewModel, id: String,
+  navigateUp: () -> Unit
 ) {
   
   LaunchedEffect(true) {

@@ -18,8 +18,6 @@ import javax.inject.Inject
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.ExperimentalTime
 
-
-
 class TmdbRepository @Inject constructor(
   private val genreDao: GenreDao,
   private val movieDao: MovieDao,
@@ -48,6 +46,7 @@ class TmdbRepository @Inject constructor(
       .build()
   ).build()
   
+  @OptIn(ExperimentalTime::class)
   fun movieStore() =
     StoreBuilder.from(
       fetcher = Fetcher.of<String, List<Movie>> { _ ->

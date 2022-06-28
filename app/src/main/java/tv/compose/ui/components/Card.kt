@@ -1,6 +1,5 @@
 package tv.compose.ui.components
 
-import android.content.res.AssetManager
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -12,9 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -43,8 +40,8 @@ fun TvCard(
     FocusableSurface(
       onFocus = onFocus,
       onPress = onClick,
-      shape = RoundedCornerShape(0.dp),
-      outlineShape = RoundedCornerShape(0.dp),
+      shape = RoundedCornerShape(12.dp),
+      outlineShape = RoundedCornerShape(14.dp),
       focusStyle = SurfaceStyle(
         scale = 1.05f,
         outlineWidth = 2.dp,

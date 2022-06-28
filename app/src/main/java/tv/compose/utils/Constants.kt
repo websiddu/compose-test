@@ -4,7 +4,7 @@ object Constants {
   object URL {
     const val BASE_URL = "https://api.themoviedb.org/"
     const val POSTER_URL = "https://image.tmdb.org/t/p/w780"
-    const val BACKDROP_URL = "https://image.tmdb.org/t/p/w500"
+    const val BACKDROP_URL = "https://image.tmdb.org/t/p/original"
   }
   
   object Database {
