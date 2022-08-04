@@ -35,6 +35,7 @@ import tv.compose.ui.components.TvButton
 import tv.compose.ui.components.TvCard
 import tv.compose.ui.focus.ChildFocusState
 import tv.compose.ui.focus.restoreFocusParent
+import tv.compose.ui.focus.tvFocusGroup
 import tv.compose.ui.vm.Loading
 import tv.compose.ui.vm.Success
 import tv.compose.ui.vm.TmdbViewModel

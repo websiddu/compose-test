@@ -20,7 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import tv.compose.router.Router
 import tv.compose.ui.components.TvButton
-import tv.compose.ui.theme.TvComposeTheme
+import tv.compose.ui.theme.TvMaterialTheme
 import tv.compose.ui.vm.TmdbViewModel
 
 @AndroidEntryPoint
@@ -37,35 +37,14 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun App() {
-    
     val isDarkTheme by remember { mutableStateOf(false) }
-    
-
-    TvComposeTheme(isDarkTheme) {
+    TvMaterialTheme(isDarkTheme) {
         val navController = rememberNavController()
-        
-
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize()
         ) {
-            
-//            Row(modifier = Modifier
-//                .padding(40.dp, 6.dp)
-//                .scale(0.5f)
-//                .focusGroup()
-//            ) {
-//                TvButton(
-//                    onPress = {
-//                        isDarkTheme = !isDarkTheme
-//                    },
-//                    shape = RoundedCornerShape(12.dp)
-//                ) {
-//                    Text(text = "Dark theme: $isDarkTheme")
-//                }
-//            }
-
             Router(navController = navController)
         }
     }

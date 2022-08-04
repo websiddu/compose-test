@@ -31,6 +31,7 @@ import androidx.tv.compose.foundation.lazy.list.TvLazyRow
 import androidx.tv.compose.foundation.lazy.list.items
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import tv.compose.ui.components.RestoringFocusDemo
 import tv.compose.ui.components.TvCard
 import tv.compose.ui.components.TvWideCard
 import tv.compose.ui.focus.ChildFocusState
@@ -57,43 +58,46 @@ fun CardsPage() {
   
   
   Column() {
-    TvLazyColumn(
-      contentPadding = PaddingValues(0.dp, 20.dp),
-      verticalArrangement = Arrangement.spacedBy(32.dp),
-      modifier = Modifier.focusGroup()
-    ) {
-      
-      items(clusters) { item ->
-        
-        var hasFocused by remember { mutableStateOf(false) }
-        
-        val fontSize = animateFloatAsState(
-          targetValue = if (hasFocused) 28f else 12f,
-          animationSpec = tween(durationMillis = 200)
-        )
-        
-        Text(
-          text = item.label,
-          modifier = Modifier
-            .padding(58.dp, 0.dp, 0.dp, 20.dp),
-          fontSize= 16.sp,
-          fontWeight = FontWeight.Medium,
-          color = MaterialTheme.colorScheme.onBackground
-        )
-        
-        TvLazyRow(
-          horizontalArrangement = Arrangement.spacedBy(20.dp),
-          contentPadding = PaddingValues(58.dp, 0.dp),
-          modifier = Modifier.onFocusChanged {
-            hasFocused = it.hasFocus
-          }
-        ) {
-          items(item.items) { card ->
-            TvCard(image = card.poster, name = card.name) {}
-          }
-        }
-      }
-    }
+
+    RestoringFocusDemo()
+
+//    TvLazyColumn(
+//      contentPadding = PaddingValues(0.dp, 20.dp),
+//      verticalArrangement = Arrangement.spacedBy(32.dp),
+//      modifier = Modifier.focusGroup()
+//    ) {
+//
+//      items(clusters) { item ->
+//
+//        var hasFocused by remember { mutableStateOf(false) }
+//
+//        val fontSize = animateFloatAsState(
+//          targetValue = if (hasFocused) 28f else 12f,
+//          animationSpec = tween(durationMillis = 200)
+//        )
+//
+//        Text(
+//          text = item.label,
+//          modifier = Modifier
+//            .padding(58.dp, 0.dp, 0.dp, 20.dp),
+//          fontSize= 16.sp,
+//          fontWeight = FontWeight.Medium,
+//          color = MaterialTheme.colorScheme.onBackground
+//        )
+//
+//        TvLazyRow(
+//          horizontalArrangement = Arrangement.spacedBy(20.dp),
+//          contentPadding = PaddingValues(58.dp, 0.dp),
+//          modifier = Modifier.onFocusChanged {
+//            hasFocused = it.hasFocus
+//          }
+//        ) {
+//          items(item.items) { card ->
+//            TvCard(image = card.poster, name = card.name) {}
+//          }
+//        }
+//      }
+//    }
   }
 }
 

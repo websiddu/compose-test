@@ -1,6 +1,9 @@
 package tv.compose.pages
 
 import android.util.Log
+import androidx.compose.foundation.focusable
+import androidx.compose.foundation.indication
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -19,10 +23,15 @@ import androidx.navigation.NavController
 import tv.compose.ui.components.TvButton
 import tv.compose.ui.components.TvCard
 import tv.compose.ui.components.TvIconButton
+import tv.compose.ui.indications.ScaleIndication
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ButtonsPage(navController: NavController) {
     Column(modifier = Modifier.padding(40.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+
+        val interactionSource = remember { MutableInteractionSource() }
+
         TvButton(onPress = {
             Log.e("my-log", "Clicked...")
 
@@ -42,13 +51,29 @@ fun ButtonsPage(navController: NavController) {
             horizontalArrangement = Arrangement.spacedBy(20.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 64.dp) {}
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 52.dp) {}
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 40.dp) {}
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 32.dp) {}
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 24.dp) {}
             TvIconButton(onPress = { /*TODO*/ }, icon = Icons.Default.Add, size = 16.dp) {}
+        }
+
+
+        Row {
+            AssistChip(
+                onClick = { /*TODO*/ },
+                label = { Text(text = "Text") },
+                modifier = Modifier
+                    .indication(
+                        indication = ScaleIndication(1.1f),
+                        interactionSource = interactionSource
+                    )
+                    .focusable(
+                        interactionSource = interactionSource,
+                    )
+
+            )
         }
 
 

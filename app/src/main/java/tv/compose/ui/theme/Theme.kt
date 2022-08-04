@@ -16,7 +16,7 @@ private val LightColorPalette = lightColorScheme(
 )
 
 @Composable
-fun TvComposeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun TvMaterialTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
 
     val colors = if (darkTheme) {
         DarkColorPalette
